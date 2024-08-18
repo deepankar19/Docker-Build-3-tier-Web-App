@@ -1,0 +1,29 @@
+h1, h2 {
+    color: #0000FF;
+}
+
+.indent {
+    margin-left: 55px;
+}
+
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.alert {
+    font-size: .75em;
+    cursor: pointer;
+}
+
+#msg {
+    color: #FF0000;
+}
+
+.hidden {
+    display: none;
+}
