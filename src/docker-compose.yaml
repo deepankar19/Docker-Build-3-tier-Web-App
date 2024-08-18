@@ -1,0 +1,47 @@
+version: '3'
+services:
+  app-server:
+    image: cumuluscycles/app-server:1.0
+    container_name: app-server
+    ports:
+      - 3000:3000
+    networks:
+      - app-network
+  web-server:
+    image: cumuluscycles/web-server:1.0
+    container_name: web-server
+    ports:
+      - 80:80
+    networks:
+      - app-network
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    networks:
+      - app-network      
+    volumes:
+      - app-volume:/data/db
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    networks:
+      - app-network
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongo
+volumes:
+  app-volume:
+    driver: local
+networks:
+  app-network:
+    name: app-network
+    driver: bridge

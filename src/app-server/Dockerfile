@@ -5,9 +5,9 @@ ENV MONGO_DB_USERNAME=root \
 
 WORKDIR /src
 
-COPY app-server/src/package.json .
+COPY ./src/package.json .
 RUN npm install
 
-COPY app-server/src/ .
+COPY ./src/ .
 
 CMD ["node", "server.js"]
